@@ -1,3 +1,4 @@
+// Базовий клас Pokemon
 class Pokemon {
     constructor(name, elementIds) {
         this.name = name;
@@ -5,18 +6,18 @@ class Pokemon {
         this.elementIds = elementIds;
     }
 
-    // Оновлення здоров'я, використовуючи контекст this
+    // Метод для оновлення здоров'я
     updateHealth(amount) {
-        this.health = Math.max(0, this.health + amount); // не дозволяємо значення менше 0
+        this.health = Math.max(0, this.health + amount);
         this.updateUI();
     }
 
-    // Оновлення інтерфейсу через елементи з відповідними id
+    // Оновлення UI
     updateUI() {
         const progressBar = document.getElementById(this.elementIds.progressBar);
         const healthText = document.getElementById(this.elementIds.healthText);
         const healthPercentage = (this.health / 100) * 100;
-
+        
         progressBar.style.width = `${healthPercentage}%`;
         healthText.textContent = `${this.health} / 100`;
 
@@ -30,38 +31,55 @@ class Pokemon {
             progressBar.classList.add("critical");
         }
     }
+
+    // Метод для атаки іншого покемона
+    attack(opponent) {
+        const damage = this.randomDamage(-20, -5);
+        const selfDamage = this.randomDamage(-10, 0);
+
+        opponent.updateHealth(damage);
+        this.updateHealth(selfDamage);
+    }
+
+    randomDamage(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 }
 
-// Створюємо об'єкти для персонажів
-const pikachu = new Pokemon('Pikachu', {
+// Клас Character, який наслідує від Pokemon
+class Character extends Pokemon {
+    constructor(name, elementIds) {
+        super(name, elementIds);  // Викликає конструктор базового класу
+    }
+
+
+}
+
+// Клас Enemy, який наслідує від Pokemon
+class Enemy extends Pokemon {
+    constructor(name, elementIds) {
+        super(name, elementIds);  // Викликає конструктор базового класу
+    }
+
+
+}
+
+// Створюємо персонажа і ворога
+const pikachu = new Character('Pikachu', {
     progressBar: 'progressbar-character',
     healthText: 'health-character'
 });
 
-const charmander = new Pokemon('Charmander', {
+const charmander = new Enemy('Charmander', {
     progressBar: 'progressbar-enemy',
     healthText: 'health-enemy'
 });
 
-// Функція для генерації випадкової шкоди
-function randomDamage(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Функція атаки, де обидва покемони оновлюють своє здоров'я
-function fight(attacker, defender) {
-    const damage = randomDamage(-20, -5);
-    const selfDamage = randomDamage(-10, 0); // можливість самоушкодження
-
-    attacker.updateHealth(damage);
-    defender.updateHealth(selfDamage);
-}
-
-// Обробники подій для кнопок
+// Події для кнопок
 document.getElementById('btn-kick').addEventListener('click', () => {
-    fight(pikachu, charmander);
+    pikachu.attack(charmander);
 });
 
 document.getElementById('btn-second-attack').addEventListener('click', () => {
-    fight(charmander, pikachu);
+    charmander.attack(pikachu);
 });
