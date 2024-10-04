@@ -28,6 +28,19 @@ class Pokemon {
             progressBar.classList.add("critical");
         }
     }
+
+    attack(enemy, damageRange, selfDamageRange) {
+        const damage = randomDamage(damageRange.min, damageRange.max);
+        const selfDamage = randomDamage(selfDamageRange.min, selfDamageRange.max);
+
+        console.log(`${this.name} attacks ${enemy.name}, causing ${Math.abs(damage)} damage!`);
+        enemy.updateHealth(damage);
+        this.updateHealth(selfDamage);
+    }
+}
+
+function randomDamage(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const pikachu = new Pokemon('Pikachu', {
@@ -40,24 +53,13 @@ const charmander = new Pokemon('Charmander', {
     healthText: 'health-enemy'
 });
 
-function randomDamage(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function fight(pokemon1, pokemon2) {
-    const damage = randomDamage(-20, -5);
-    const selfDamage = randomDamage(-10, 0); // можливість самоушкодження
-
-    pokemon1.updateHealth(damage);
-    pokemon2.updateHealth(selfDamage);
-}
-
 // Події для кнопок
 document.getElementById('btn-kick').addEventListener('click', () => {
-    fight(pikachu, charmander);
+    // Pikachu атакує Charmander
+    pikachu.attack(charmander, {min: -20, max: -5}, {min: -10, max: 0});
 });
 
 document.getElementById('btn-second-attack').addEventListener('click', () => {
-    // Другий тип атаки з більшою шкодою
-    fight(charmander, pikachu);
+    // Charmander атакує Pikachu
+    charmander.attack(pikachu, {min: -15, max: -5}, {min: -5, max: 0});
 });
