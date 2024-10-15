@@ -94,25 +94,30 @@ const charmander = new Enemy('Charmander', {
 // Функція замикання для лічильника натискань
 const clickCounter = (maxClicks) => {
     let clicks = 0;
-    return (button) => {
+    return () => {
         if (clicks < maxClicks) {
             clicks++;
-            console.log(`Button ${button} clicked ${clicks} times. Remaining clicks: ${maxClicks - clicks}`);
+            console.log(`Button clicked ${clicks} times. Remaining clicks: ${maxClicks - clicks}`);
+            return true; // Повертаємо true, якщо натискань ще можна робити
         } else {
-            console.log(`Button ${button} has reached the maximum number of clicks (${maxClicks}).`);
+            console.log(`Button has reached the maximum number of clicks (${maxClicks}).`);
+            return false; // Повертаємо false, якщо більше натискати не можна
         }
     };
 };
 
-// Створюємо обробники натискань для кнопок з обмеженням у 6 натискань
-const handleClick = clickCounter(6);
+// Створюємо обробники натискань для кожної кнопки з обмеженням у 6 натискань
+const kickCounter = clickCounter(6);
+const secondAttackCounter = clickCounter(6);
 
 document.getElementById('btn-kick').addEventListener('click', () => {
-    handleClick('Kick');
-    pikachu.attack(charmander);
+    if (kickCounter()) {
+        pikachu.attack(charmander);
+    }
 });
 
 document.getElementById('btn-second-attack').addEventListener('click', () => {
-    handleClick('Second Attack');
-    charmander.attack(pikachu);
+    if (secondAttackCounter()) {
+        charmander.attack(pikachu);
+    }
 });
