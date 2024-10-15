@@ -472,3 +472,13 @@ h1 {
 .action label {
     padding: 6px 0;
 }
+
+#logs {
+    border: 2px solid white;  /* Білий колір рамки */
+    border-radius: 5px;      /* Заокруглені кути */
+    padding: 10px;           /* Внутрішній відступ */
+    background-color: rgba(255, 255, 255, 0.8); /* Напівпрозорий фон */
+    max-height: 300px;       /* Максимальна висота контейнера */
+    overflow-y: auto;        /* Прокручування для вертикального переповнення */
+    margin-top: 10px;        /* Відступ зверху */
+}
