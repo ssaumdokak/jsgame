@@ -113,11 +113,15 @@ const secondAttackCounter = clickCounter(6);
 document.getElementById('btn-kick').addEventListener('click', () => {
     if (kickCounter()) {
         pikachu.attack(charmander);
+    } else {
+        alert(`Максимальна кількість натискань досягнута для кнопки "Kick".`);
     }
 });
 
 document.getElementById('btn-second-attack').addEventListener('click', () => {
     if (secondAttackCounter()) {
         charmander.attack(pikachu);
+    } else {
+        alert(`Максимальна кількість натискань досягнута для кнопки "Second Attack".`);
     }
 });
