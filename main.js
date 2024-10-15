@@ -106,6 +106,10 @@ const clickCounter = (maxClicks) => {
     };
 };
 
+// Підрахунок загальної кількості кліків
+let totalKickClicks = 0;
+let totalSecondAttackClicks = 0;
+
 // Створюємо обробники натискань для кожної кнопки з обмеженням у 6 натискань
 const kickCounter = clickCounter(6);
 const secondAttackCounter = clickCounter(6);
@@ -113,6 +117,8 @@ const secondAttackCounter = clickCounter(6);
 document.getElementById('btn-kick').addEventListener('click', () => {
     if (kickCounter()) {
         pikachu.attack(charmander);
+        totalKickClicks++; // Збільшуємо лічильник натискань для кнопки "Kick"
+        console.log(`Total Kick clicks: ${totalKickClicks}`);
     } else {
         alert(`Максимальна кількість натискань досягнута для кнопки "Kick".`);
     }
@@ -121,6 +127,8 @@ document.getElementById('btn-kick').addEventListener('click', () => {
 document.getElementById('btn-second-attack').addEventListener('click', () => {
     if (secondAttackCounter()) {
         charmander.attack(pikachu);
+        totalSecondAttackClicks++; // Збільшуємо лічильник натискань для кнопки "Second Attack"
+        console.log(`Total Second Attack clicks: ${totalSecondAttackClicks}`);
     } else {
         alert(`Максимальна кількість натискань досягнута для кнопки "Second Attack".`);
     }
