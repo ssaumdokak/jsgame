@@ -47,7 +47,7 @@ class Pokemon {
     randomDamage(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
+<br></br>
     // Лог бою
     logBattle(opponent, damage, selfDamage) {
         const logs = [
