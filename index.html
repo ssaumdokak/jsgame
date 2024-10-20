@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Battle</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Додайте стилі, якщо потрібно, для покращення зовнішнього вигляду */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .playground {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .pokemon {
+            margin: 0 20px;
+        }
+        .bar {
+            width: 100px;
+            height: 20px;
+            background-color: lightgray;
+            border: 1px solid #ccc;
+            position: relative;
+            margin-top: 10px;
+        }
+        .health {
+            height: 100%;
+            background-color: green;
+            width: 100%;
+            transition: width 0.5s;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #logs {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
     <!-- Логотип гри -->
@@ -32,12 +76,10 @@
 
     <button id="btn-kick" class="button">Kick</button>
     <button id="btn-second-attack" class="button">Second Attack</button>
-    <br></br>
-    <br></br>
 
     <!-- Лог бою -->
     <div id="logs"></div>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
