@@ -22,6 +22,7 @@ let totalSecondAttackClicks = 0;
 const kickCounter = clickCounter(6);
 const secondAttackCounter = clickCounter(6);
 
+// Event listeners for buttons
 document.getElementById('btn-kick').addEventListener('click', () => {
     if (kickCounter()) {
         pikachu.attack(charmander, totalKickClicks, totalSecondAttackClicks);
