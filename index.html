@@ -11,14 +11,20 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центруємо вміст по горизонталі */
+            height: 100vh; /* Висота на весь екран */
+            justify-content: center; /* Центруємо вміст по вертикалі */
+            margin: 0; /* Прибираємо відступи */
         }
         .playground {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Центруємо покемонів */
             margin: 20px;
         }
         .pokemon {
-            margin: 0 20px;
+            margin: 0 20px; /* Відстань між покемонами */
         }
         .bar {
             width: 100px;
@@ -47,6 +53,8 @@
             border: 1px solid #ccc;
             padding: 10px;
             background-color: white;
+            width: 80%; /* Ширина блоку логів */
+            max-width: 400px; /* Максимальна ширина блоку логів */
         }
     </style>
 </head>
